@@ -27,6 +27,16 @@ public:
 	//TODO: implement
 	void addWord(const string& word)
 	{
+		TrieNode* current = _root;
+		for (auto character : word)
+		{
+			if (current->hasChild(character) == false)
+			{
+				current->setChild(character, new TrieNode(character));
+			}
+			current = current->getChild(character);
+		}
+		current->setChild('$', new TrieNode('$'));
 	}
 
 	//TODO: implement
